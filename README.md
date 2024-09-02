@@ -30,12 +30,12 @@ This project aims to build a library management system that includes book borrow
 ## Purpose of the Project
 The main objective of this project is to provide a strong background for managing a library with book loans. This includes functions that allow administrators to manage the entire library, and for users to crud books, the ability to borrow a book for 14 days, the ability to evaluate the books that have been borrowed, and to create an account for it. The project is built to be scalable, secure, and easy to integrate with any front-end or mobile application.
 ## Features
-**User Registration & Login**:Users can register and log in to the system using JWT authentication.
-**Admin Management:** Admins can create, update, and delete movies, with an admin user created via a seeder.
-**User management:**: The admin has full crud privileges. The user can create an account 
-**book management:** The admin has full crud powers. The user can only create a book, view details, and delete his book
-**borrow record management:** The admin has full crud powers. The user can borrow the book and return it
-**rating management:**The admin has full crud privileges. The user can only evaluate his writing and delete it
+- **User Registration & Login**:Users can register and log in to the system using JWT authentication.
+- **Admin Management:** Admins can create, update, and delete movies, with an admin user created via a seeder.
+- **User management:**: The admin has full crud privileges. The user can create an account 
+- **book management:** The admin has full crud powers. The user can only create a book, view details, and delete his book
+- **borrow record management:** The admin has full crud powers. The user can borrow the book and return it
+- **rating management:**The admin has full crud privileges. The user can only evaluate his writing and delete it
 ---
 ## Project Structure---
 This project follows the standard Laravel structure, which includes several important components:
