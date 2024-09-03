@@ -33,7 +33,7 @@ class StoreBookRequest extends FormRequest
             'title' => 'required|string|max:50',
             'author' => 'required|string|min:3|max:40',
             'category' => 'required|string|min:3|max:15',
-            'available' => 'required|string|min:3|max:15',
+            // 'available' => 'required|string|min:3|max:15',
             'description' => 'required|string',
             // the published_at is now create
             // 'published_at' => 'required|date',

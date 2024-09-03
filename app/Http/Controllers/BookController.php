@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Rating;
 // use App\Service\BookService;
 use App\Services\BookService;
 use Illuminate\Http\Request;
@@ -59,9 +60,13 @@ class BookController extends Controller
       @return BookResource
   */
     
-    public function show(Book $book)
+    public function show($id)
     {
-        return new BookResource($book);
+        $book = Book::findOrFail($id);
+        $book->load('rating');
+        $averageRating = $book->rating->avg('rating');
+
+        return new BookResource($book,$averageRating);
 
     }
 

@@ -2,50 +2,44 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Book;
 use App\Models\Rating;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Services\RatingService;
+// use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\RatingResource;
+use App\Http\Requests\StoreRatingRequest;
+use App\Http\Requests\UpdateRatingRequest;
 
 class RatingController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function __construct(RatingService $RatingService)
     {
-        //
+        $this->RatingService = $RatingService;
+    }
+
+    public function index(Request $request)
+    {
+        $rating=Rating::all();
+        return RatingResource::collection($rating);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, $bookId)
+    public function store(StoreRatingRequest $request)
     {
-        $book = Book::findOrFail($bookId);
-
-        // فحص الصلاحيات باستخدام الـ Policy
-        // Gate::authorize('update', $borrowRecord);
-
-        $this->authorize('create', [Rating::class, $book]);
-
-        $request->validate([
-            'rating' => 'required|integer|min:1|max:5',
-        ]);
-
-        $rating = Rating::create([
-            'user_id' => Auth::id(),
-            'book_id' => $book->id,
-            'rating' => $request->input('rating'),
-        ]);
-
-        return response()->json($rating, 201);
+        $data = $request->validated();
+        $Rating = $this->RatingService->createRating($data);
+        return response()->json(['data'=>$Rating,'masage'=>'get movies seccess'],200);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Rating $rating)
+    public function show(string $id)
     {
         //
     }
@@ -53,16 +47,20 @@ class RatingController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Rating $rating)
+    public function update(UpdateRatingRequest $request, Rating $rating)
     {
-        //
+        $updatedRating = $this->RatingService->updateRating($rating, $request->validated());
+        return new RatingResource($updatedRating);
     }
-
+    
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Rating $rating)
     {
-        //
+
+            $this->RatingService->deleteRating($rating);
+            return response()->json(null, 204);
+
     }
 }

@@ -13,7 +13,7 @@ class BookService{
 
         $author = $data['author'] ?? null;
         $category = $data['category'] ?? null;
-        $available = $data['available']??true;
+        $available = $data['available']??null;
         $books = Book::query();
        
         if ($author) {
@@ -25,11 +25,9 @@ class BookService{
 
 
 
-        if ($available !== false) {
+        if ($available !== null) {
             $books->where('available', $available);
-        }else{
-            return response()->json(['message' => 'Available parameter is missing'], 400);
-        }
+        };
 
 
         return $books->paginate(10); 
@@ -48,7 +46,7 @@ class BookService{
             'author' => $data['author'],
             'description' =>$data['description'],
             'category' =>$data['category'],
-            'available' =>false,
+            // 'available' =>false,
             'published_at' => now(),
         ]);
     }

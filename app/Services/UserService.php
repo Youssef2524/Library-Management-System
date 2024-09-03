@@ -17,7 +17,7 @@ class UserService
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'roles_name' => $data['roles_name'],
+            'roles_name' => $data['roles_name']??'user',
         ]);
     }
 
@@ -33,7 +33,7 @@ class UserService
             'name' => $data['name'] ?? $user->name,
             'email' => $data['email'] ?? $user->email,
             'password' => isset($data['password']) ? Hash::make($data['password']) : $user->password,
-            'roles_name' => $data['roles_name'] ?? $user->roles_name,
+            'roles_name' => $data['roles_name'] ??  'default_role',
         ]);
 
         return $user;

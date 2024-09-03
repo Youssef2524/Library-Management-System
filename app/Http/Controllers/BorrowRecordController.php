@@ -72,11 +72,7 @@ class BorrowRecordController extends Controller
     {
         
                 Gate::authorize('update', $borrowRecord);
-
-        // استدعاء خدمة إرجاع الكتاب
         $borrowRecord = $borrowRecordService->returnBorrowedBook($borrowId);
-    
-        // يمكنك هنا إعادة توجيه المستخدم أو عرض رسالة نجاح
         return response()->json(['message' => 'Book returned successfully', 'record' => $borrowRecord]);
     }
     

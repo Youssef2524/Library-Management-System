@@ -16,15 +16,13 @@ class RatingPolicy
       /*
     *@param User $user
     *@param Book $book
-     @return $book
+     @return $borrowRecord
     */
-    public function create(User $user, Book $book): bool
+    public function create(User $user, Rating $rating): bool
     {
         // تحقق من أن المستخدم قد استعار الكتاب
-        return $book->borrowRecords()
-                    ->where('user_id', $user->id)
-                    ->whereNull('returned_at')
-                    ->exists();
+        return $user->id === $rating->user_id;
+
     }
 
     /**

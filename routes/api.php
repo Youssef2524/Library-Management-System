@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserController;
+// use App\Http\Controllers\RatingController;
+// use App\Http\Controllers\RatingController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\BorrowRecordController;
 // use App\Http\Controllers\BorrowRecordController;
@@ -32,6 +34,5 @@ Route::middleware(['auth:api'])->group(function () {
 });
 Route::apiResource('books', BookController::class);
 Route::apiResource('BorrowRecord', BorrowRecordController::class);
-Route::apiResource('Rating', RatingController::class);
-// Route::post('createBorrowRecord', BorrowRecordController::class);
-// Route::post('/BorrowRecord/createBorrowRecord', [BorrowRecordController::class, 'createBorrowRecord']);
+
+    Route::apiResource('rating', RatingController::class);
