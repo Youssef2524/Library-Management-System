@@ -1,9 +1,9 @@
-###Task Management API
-##Overview
+### Task Management API
+## Overview
 This project is an advanced API for task management that allows users to create, update, view, delete, and assign tasks with various properties such as title, description, priority, due date, status, and assigned_to. The project also includes role-based access control (Admin, Manager, User) to manage permissions and actions within the API.
 
 
-###Features
+### Features
 - **Role-based access control:**:
 - --**Admin**: Full control over tasks and users.
 - --**Manager**: Can assign tasks to users and manage the tasks they created or assigned..
